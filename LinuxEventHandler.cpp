@@ -3,6 +3,20 @@
 
 using namespace ni;
 
+// TODO: Implement keyboard and gamepad
+
+LinuxEventHandler::LinuxEventHandler(DeviceType devices) {
+	if(devices & DeviceType::Mouse) {
+		m_mouse = linux_mouse_create("netinput-vmouse");
+	}
+}
+
+LinuxEventHandler::~LinuxEventHandler() {
+	linux_device_destroy(m_mouse);
+	linux_device_destroy(m_keyboard);
+	linux_device_destroy(m_gamepad);
+}
+
 void LinuxEventHandler::handleMouseEvent(const MouseEvent& event) {
 
 }
