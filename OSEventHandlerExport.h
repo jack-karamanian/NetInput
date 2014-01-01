@@ -6,4 +6,4 @@ namespace ni {
 	class EventHandler;
 }
 
-std::shared_ptr<ni::EventHandler> GetOSEventHandler();
+std::shared_ptr<ni::EventHandler> GetOSEventHandler(ni::DeviceType devices);

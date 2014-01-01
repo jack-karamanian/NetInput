@@ -6,10 +6,11 @@ namespace ni {
 	class MouseEvent;
 	class KeyboardEvent;
 	class GamepadEvent;
+	class EventHandler;
 
 	class InputSystem {
 	public:
-		InputSystem();
+		InputSystem(DeviceType devices);
 		void sendMouseEvent(const MouseEvent& event);
 		void sendKeyboardEvent(const KeyboardEvent& event);
 		void sendGamepadEvent(const GamepadEvent& event);

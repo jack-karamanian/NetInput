@@ -5,8 +5,8 @@
 
 using namespace ni;
 
-InputSystem::InputSystem() {
-	m_osImpl = GetOSEventHandler();
+InputSystem::InputSystem(DeviceType devices) {
+	m_osImpl = GetOSEventHandler(devices);
 }
 
 void InputSystem::sendMouseEvent(const MouseEvent& event) {

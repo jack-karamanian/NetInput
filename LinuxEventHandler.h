@@ -5,7 +5,7 @@
 namespace ni {
 	class LinuxEventHandler : public EventHandler {
 	public:
-		LinuxEventHandler();
+		LinuxEventHandler(DeviceType devices);
 		~LinuxEventHandler();
 
 		virtual void handleMouseEvent(const MouseEvent& event) override;
