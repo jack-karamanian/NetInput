@@ -26,7 +26,7 @@ void LinuxEventHandler::handleMouseEvent(const MouseEvent& event) {
 	sendEvent(m_mouse, EV_REL, REL_WHEEL, event.deltaWheel);
 	sendEvent(m_mouse, EV_KEY, BTN_LEFT, event.leftButtonDown);
 	sendEvent(m_mouse, EV_KEY, BTN_RIGHT, event.rightButtonDown);
-	sendEvent(m_mouse, EV_KEY, BTN_MIDDLE, event.middleButtionDown);
+	sendEvent(m_mouse, EV_KEY, BTN_MIDDLE, event.middleButtonDown);
 	sendEvent(m_mouse, EV_SYN, 0, 0);
 }
 
