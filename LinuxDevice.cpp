@@ -8,7 +8,7 @@
 #include <linux/uinput.h>
 #include "LinuxDevice.h"
 
-using namespace ni;
+namespace ni {
 
 LinuxDevice::LinuxDevice() : _device({ 0 }), _device_fd(-1) {
 
@@ -33,4 +33,6 @@ LinuxDevice linux_device_create(const char *name) {
 
 void linux_device_destroy(LinuxDevice device) {
 	ioctl(device._device_fd, UI_DEV_DESTROY);
+}
+
 }

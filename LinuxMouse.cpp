@@ -4,7 +4,7 @@
 #include <linux/uinput.h>
 #include "LinuxMouse.h"
 
-using namespace ni;
+namespace ni {
 
 LinuxDevice linux_mouse_create(const char *name) {
 	LinuxDevice dev = linux_device_create(name);
@@ -24,4 +24,6 @@ LinuxDevice linux_mouse_create(const char *name) {
 
 	ioctl(fd, UI_DEV_CREATE);
 	return dev;
+}
+
 }
