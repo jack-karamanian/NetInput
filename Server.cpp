@@ -3,12 +3,16 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <cstring>
+#include "MouseEvent.h"
 #include "InputPacket.h"
 #include "Server.h"
 
 using namespace ni;
 
-Server::Server(short port) : m_socket(createSocket(port)), m_running(true) {
+Server::Server(DeviceType devices, short port) : m_inputSystem(devices),
+												 m_socket(createSocket(port)),
+												 m_running(true) 
+{
 
 }
 
@@ -24,7 +28,10 @@ void Server::run() {
 
 void Server::processPacket(const InputPacket& packet) {
 	if(packet.isSafe()) {
-		
+		if(packet.type == DeviceType::Mouse && packet.length == sizeof(MouseEvent)) {
+			const MouseEvent event = *reinterpret_cast<const MouseEvent*>(packet.data);
+			m_inputSystem.sendMouseEvent(event);
+		}
 	}
 }
 
