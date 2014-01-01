@@ -12,6 +12,7 @@ namespace ni {
 		virtual void handleKeyboardEvent(const KeyboardEvent& event) override;
 		virtual void handleGamepadEvent(const GamepadEvent& event) override;
 	private:
+		void sendEvent(const LinuxDevice& device, int type, int code, int value);
 		LinuxDevice m_mouse;
 		LinuxDevice m_keyboard;
 		LinuxDevice m_gamepad;
