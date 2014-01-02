@@ -8,5 +8,5 @@ bool InputPacket::isValid() const {
 }
 
 bool InputPacket::isSafe() const {
-	return length <= DATA_LENGTH;
+	return length <= DATA_LENGTH && length >= 0;
 }
