@@ -1,6 +1,7 @@
 #include <linux/input.h>
 #include <unistd.h>
 #include <cstring>
+#include <iostream>
 #include "MouseEvent.h"
 #include "LinuxEventHandler.h"
 
@@ -11,10 +12,12 @@ using namespace ni;
 LinuxEventHandler::LinuxEventHandler(DeviceType devices) {
 	if(devices & DeviceType::Mouse) {
 		m_mouse = linux_mouse_create("netinput-vmouse");
+		std::cout << "Created virtual mouse device." << std::endl;
 	}
 }
 
 LinuxEventHandler::~LinuxEventHandler() {
+	std::cout << "Destroying virtual input devices." << std::endl;
 	linux_device_destroy(m_mouse);
 	linux_device_destroy(m_keyboard);
 	linux_device_destroy(m_gamepad);

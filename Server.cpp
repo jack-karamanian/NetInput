@@ -3,6 +3,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <cstring>
+#include <iostream>
 #include "MouseEvent.h"
 #include "InputPacket.h"
 #include "Server.h"
@@ -19,9 +20,12 @@ Server::Server(DeviceType devices, short port) : m_inputSystem(devices),
 void Server::run() {
 	InputPacket packet;
 	while(m_running) {
-		recvfrom(m_socket, &packet, sizeof(InputPacket), 0, nullptr, nullptr);
+		ssize_t numBytes = recvfrom(m_socket, &packet, sizeof(InputPacket), 0, nullptr, nullptr);
+		std::cerr << "Recieved " << numBytes << " bytes" << std::endl;
 		if(packet.isValid()) {
 			processPacket(packet);
+		} else {
+			std::cerr << "Packet not valid" << std::endl;
 		}
 	}
 }
@@ -29,9 +33,12 @@ void Server::run() {
 void Server::processPacket(const InputPacket& packet) {
 	if(packet.isSafe()) {
 		if(packet.type == DeviceType::Mouse && packet.length == sizeof(MouseEvent)) {
+			std::cerr << "Mouse event recieved." << std::endl;
 			const MouseEvent event = *reinterpret_cast<const MouseEvent*>(packet.data);
 			m_inputSystem.sendMouseEvent(event);
 		}
+	} else {
+		std::cerr << "Packet not safe!" << std::endl;
 	}
 }
 
