@@ -14,6 +14,12 @@ LinuxEventHandler::LinuxEventHandler(DeviceType devices) {
 		m_mouse = linux_mouse_create("netinput-vmouse");
 		std::cout << "Created virtual mouse device." << std::endl;
 	}
+	if(devices & DeviceType::Keyboard) {
+
+	}
+	if(devices & DeviceType::Gamepad) {
+
+	}
 }
 
 LinuxEventHandler::~LinuxEventHandler() {
